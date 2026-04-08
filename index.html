@@ -1,0 +1,670 @@
+<html lang="en" class="scroll-smooth bg-black"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AURA | Fine Dining Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Playfair+Display:wght@400;500&amp;display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        /* Hide scrollbar for category tabs and carousel */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-50 font-sans antialiased max-w-md mx-auto relative min-h-screen shadow-2xl shadow-black/50 selection:bg-[#D4AF37]/30 selection:text-white">
+
+    <!-- Language Toggle -->
+    <div class="absolute top-6 right-6 z-50 flex gap-1.5 p-1 bg-zinc-900/60 border border-zinc-800/60 rounded-lg backdrop-blur-md animate-fade-up" style="animation-delay: 0ms;">
+        <button class="lang-btn active-lang px-2 py-1 text-[10px] sm:text-xs font-semibold rounded-md transition-all duration-300 bg-[#D4AF37]/20 text-[#D4AF37]" data-lang="en">EN</button>
+        <button class="lang-btn px-2 py-1 text-[10px] sm:text-xs font-semibold rounded-md transition-all duration-300 text-zinc-400 hover:text-zinc-200" data-lang="hi">HI</button>
+        <button class="lang-btn px-2 py-1 text-[10px] sm:text-xs font-semibold rounded-md transition-all duration-300 text-zinc-400 hover:text-zinc-200" data-lang="mr">MR</button>
+    </div>
+
+    <!-- Header Section -->
+    <header class="animate-fade-up text-center pt-20 pr-6 pb-8 pl-6 relative" style="animation-delay: 0ms">
+    <!-- Subtle ambient glow behind logo -->
+    <div class="absolute top-8 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#D4AF37]/15 blur-[60px] rounded-full pointer-events-none"></div>
+    
+    <div class="relative z-10 flex flex-col items-center">
+        <h1 class="text-5xl tracking-tighter font-medium bg-gradient-to-b from-zinc-50 to-zinc-400 bg-clip-text text-transparent mb-2" style="font-family: 'Playfair Display', serif;">AURA</h1>
+        
+        <div class="flex items-center justify-center gap-3 mb-6 w-full max-w-[240px]">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/60"></div>
+            <span class="text-xs text-[#D4AF37] tracking-[0.3em] uppercase font-medium translatable" data-en="Fine Dining" data-hi="फाइन डाइनिंग" data-mr="फाईन डायनिंग">Fine Dining</span>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/60"></div>
+        </div>
+        
+        <p class="text-sm text-zinc-400 leading-relaxed max-w-[260px] mx-auto font-light translatable" data-en="Experience culinary excellence crafted with passion, precision, and seasonal ingredients." data-hi="जोश, सटीकता और मौसमी सामग्रियों के साथ तैयार की गई पाक उत्कृष्टता का अनुभव करें।" data-mr="आवड, अचूकता आणि हंगामी घटकांसह तयार केलेल्या पाककलेचा अनुभव घ्या.">
+            Experience culinary excellence crafted with passion, precision, and seasonal ingredients.
+        </p>
+    </div>
+</header>
+
+    <!-- Search Bar -->
+    <div class="px-6 mb-4 sticky top-0 z-30 bg-zinc-950/80 backdrop-blur-xl pt-4 pb-2 animate-fade-up" style="animation-delay: 100ms;">
+        <div class="relative group">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-zinc-500 group-focus-within:text-[#D4AF37] transition-colors duration-300">
+                <iconify-icon icon="solar:magnifer-linear" width="1.2em" height="1.2em"></iconify-icon>
+            </div>
+            <input type="text" id="searchInput" placeholder="Search menu..." class="block w-full p-3.5 pl-11 text-sm font-light text-zinc-200 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl focus:ring-1 focus:ring-[#D4AF37]/40 focus:border-[#D4AF37]/40 focus:outline-none transition-all placeholder-zinc-500 shadow-inner">
+            
+            <!-- Veg/Non-Veg Toggle (Design Element) -->
+            <div class="absolute inset-y-0 right-3 flex items-center gap-2">
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Offers Carousel -->
+    <div class="animate-fade-up mb-8 relative w-full overflow-hidden" style="animation-delay: 150ms">
+        <div class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory" id="carousel-track" style="scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none;">
+            
+            <!-- Offer Slide 1 -->
+            <div class="relative shrink-0 w-full px-6 snap-center">
+                <div class="relative h-52 sm:h-60 rounded-2xl overflow-hidden border border-[#D4AF37]/40 flex items-end p-6 group cursor-pointer bg-black shadow-[0_0_20px_rgba(212,175,55,0.1)]">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&amp;fit=crop&amp;q=80&amp;w=800" alt="Special Offer" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
+                    <div class="relative z-10 w-full transform transition-transform duration-500">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] sm:text-xs uppercase tracking-[0.15em] font-bold text-black bg-gradient-to-r from-[#D4AF37] to-[#f4d068] mb-3 shadow-[0_2px_10px_rgba(212,175,55,0.3)]">
+                            <iconify-icon icon="solar:tag-price-bold" width="1.2em" height="1.2em"></iconify-icon>
+                            20% OFF
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-medium text-white mb-2 leading-tight" style="font-family: 'Playfair Display', serif;">Chef's Tasting Menu</h3>
+                        <p class="text-xs sm:text-sm text-zinc-300 font-light max-w-[90%] sm:max-w-[70%]">A highly curated 7-course culinary journey with premium wine pairing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offer Slide 2 -->
+            <div class="relative shrink-0 w-full px-6 snap-center">
+                <div class="relative h-52 sm:h-60 rounded-2xl overflow-hidden border border-[#D4AF37]/40 flex items-end p-6 group cursor-pointer bg-black shadow-[0_0_20px_rgba(212,175,55,0.1)]">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&amp;fit=crop&amp;q=80&amp;w=800" alt="Happy Hour Offer" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
+                    <div class="relative z-10 w-full transform transition-transform duration-500">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] sm:text-xs uppercase tracking-[0.15em] font-bold text-black bg-gradient-to-r from-[#D4AF37] to-[#f4d068] mb-3 shadow-[0_2px_10px_rgba(212,175,55,0.3)]">
+                            <iconify-icon icon="solar:glass-water-bold" width="1.2em" height="1.2em"></iconify-icon>
+                            BUY 1 GET 1
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-medium text-white mb-2 leading-tight" style="font-family: 'Playfair Display', serif;">Sunset Cocktails</h3>
+                        <p class="text-xs sm:text-sm text-zinc-300 font-light max-w-[90%] sm:max-w-[70%]">Enjoy exclusive signature mixes on the house every evening.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offer Slide 3 -->
+            <div class="relative shrink-0 w-full px-6 snap-center">
+                <div class="relative h-52 sm:h-60 rounded-2xl overflow-hidden border border-[#D4AF37]/40 flex items-end p-6 group cursor-pointer bg-black shadow-[0_0_20px_rgba(212,175,55,0.1)]">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&amp;fit=crop&amp;q=80&amp;w=800" alt="Private Dining Offer" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
+                    <div class="relative z-10 w-full transform transition-transform duration-500">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] sm:text-xs uppercase tracking-[0.15em] font-bold text-black bg-gradient-to-r from-[#D4AF37] to-[#f4d068] mb-3 shadow-[0_2px_10px_rgba(212,175,55,0.3)]">
+                            <iconify-icon icon="solar:crown-star-bold" width="1.2em" height="1.2em"></iconify-icon>
+                            COMPLIMENTARY
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-medium text-white mb-2 leading-tight" style="font-family: 'Playfair Display', serif;">Private Dining</h3>
+                        <p class="text-xs sm:text-sm text-zinc-300 font-light max-w-[90%] sm:max-w-[70%]">Free artisan dessert platter for royal group reservations.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Navigation Dots & Arrows -->
+        <div class="flex items-center justify-center gap-4 mt-5 px-6">
+            <button id="prev-slide" class="w-8 h-8 flex items-center justify-center rounded-full border border-zinc-800 text-zinc-400 hover:text-[#D4AF37] hover:border-[#D4AF37]/50 bg-zinc-900/50 transition-colors cursor-pointer">
+                <iconify-icon icon="solar:alt-arrow-left-linear" width="1.2em" height="1.2em"></iconify-icon>
+            </button>
+            <div class="flex gap-2" id="carousel-dots">
+                <button class="h-1.5 w-4 rounded-full bg-[#D4AF37] transition-all duration-300"></button>
+                <button class="h-1.5 w-1.5 rounded-full bg-zinc-700 transition-all duration-300 cursor-pointer hover:bg-zinc-500"></button>
+                <button class="h-1.5 w-1.5 rounded-full bg-zinc-700 transition-all duration-300 cursor-pointer hover:bg-zinc-500"></button>
+            </div>
+            <button id="next-slide" class="w-8 h-8 flex items-center justify-center rounded-full border border-zinc-800 text-zinc-400 hover:text-[#D4AF37] hover:border-[#D4AF37]/50 bg-zinc-900/50 transition-colors cursor-pointer">
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="1.2em" height="1.2em"></iconify-icon>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sticky Category Tabs -->
+    <div class="sticky top-[76px] z-20 bg-gradient-to-b from-zinc-950/95 to-zinc-950/0 backdrop-blur-md pt-2 pb-6 animate-fade-up" style="animation-delay: 200ms;">
+        <nav class="flex overflow-x-auto no-scrollbar px-6 gap-8 text-sm font-medium justify-center" style="-ms-overflow-style: none; scrollbar-width: none;">
+            <a href="#veg" class="whitespace-nowrap relative flex flex-col items-center transition-colors text-[#D4AF37]">
+                <span class="translatable" data-en="Vegetarian" data-hi="शाकाहारी" data-mr="शाकाहारी">Vegetarian</span>
+                <span class="absolute -bottom-2 w-1 h-1 rounded-full bg-[#D4AF37]"></span>
+            </a>
+            <a href="#non-veg" class="whitespace-nowrap hover:text-zinc-300 transition-colors text-zinc-500 translatable" data-en="Non-Vegetarian" data-hi="मांसाहारी" data-mr="मांसाहारी">Non-Vegetarian</a>
+            <a href="#vegan" class="whitespace-nowrap hover:text-zinc-300 transition-colors text-zinc-500 translatable" data-en="Vegan" data-hi="वीगन" data-mr="व्हेगन">Vegan</a>
+            <a href="#beverages" class="whitespace-nowrap hover:text-zinc-300 transition-colors text-zinc-500 translatable" data-en="Beverages" data-hi="पेय पदार्थ" data-mr="पेये">Beverages</a>
+        </nav>
+    </div>
+
+    <!-- Menu Content -->
+    <main class="px-6 pb-24 space-y-12">
+        
+        <!-- Vegetarian Section -->
+        <section id="veg" class="scroll-mt-36 animate-fade-up" style="animation-delay: 300ms;">
+            <h2 class="text-xl tracking-tight font-medium text-white mb-6 flex items-center gap-4" style="font-family: 'Playfair Display', serif;">
+                Vegetarian
+                <span class="h-px flex-1 bg-gradient-to-r from-green-500/50 to-transparent"></span>
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Item: Truffle Malai Kofta -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Truffle Malai Kofta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Truffle Malai Kofta</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-green-500/40 rounded-sm shrink-0 mt-0.5" title="Vegetarian">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500/80"></span>
+                                </span>
+                            </div>
+                            <!-- Badge -->
+                            <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    <iconify-icon icon="solar:star-linear" width="1em" height="1em"></iconify-icon>
+                                    Chef's Pick
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Hand-crafted paneer dumplings submerged in a rich cashew-saffron gravy, infused with black truffle oil.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹32</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item: Smoked Dal Makhani -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Smoked Dal Makhani" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Smoked Dal Makhani</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-green-500/40 rounded-sm shrink-0 mt-0.5" title="Vegetarian">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500/80"></span>
+                                </span>
+                            </div>
+                            <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    Classic
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">24-hour slow-cooked black lentils, enhanced with charcoal smoke, farm-fresh buttercream, and fenugreek.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹24</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Saffron Rasmalai Mille-Feuille -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="data:image/jpeg;base64,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" alt="Saffron Rasmalai Mille-Feuille" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Saffron Rasmalai Mille-Feuille</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-green-500/40 rounded-sm shrink-0 mt-0.5" title="Vegetarian">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500/80"></span>
+                                </span>
+                            </div>
+                            <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    Dessert
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Deconstructed rasmalai layered with crisp phyllo sheets, pistachio mousse, and 24k edible gold leaf.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹22</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Non-Vegetarian Section -->
+        <section id="non-veg" class="scroll-mt-36 animate-fade-up" style="animation-delay: 400ms;">
+            <h2 class="text-xl tracking-tight font-medium text-white mb-6 flex items-center gap-4" style="font-family: 'Playfair Display', serif;">
+                Non-Vegetarian
+                <span class="h-px flex-1 bg-gradient-to-r from-red-500/50 to-transparent"></span>
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Item: Nalli Nihari Osso Buco -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Nalli Nihari Osso Buco" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Nalli Nihari Osso Buco</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-red-500/40 rounded-sm shrink-0 mt-0.5" title="Non-Vegetarian">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500/80"></span>
+                                </span>
+                            </div>
+                             <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    Signature
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Slow-braised lamb shank in deeply aromatic royal Awadhi spices, finished with rose water and vetiver.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹65</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Chicken Tikka Cannelloni -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Chicken Tikka Cannelloni" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Chicken Tikka Cannelloni</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-red-500/40 rounded-sm shrink-0 mt-0.5" title="Non-Vegetarian">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500/80"></span>
+                                </span>
+                            </div>
+                            <!-- Popular Badge -->
+                            <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    Fusion
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light">Charcoaled tandoori chicken encased in artisanal pasta sheets, topped with makhani foam and micro-cilantro.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹34</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Tandoori Lobster Tail -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Tandoori Lobster Tail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Tandoori Lobster Tail</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-red-500/40 rounded-sm shrink-0 mt-0.5" title="Non-Vegetarian">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500/80"></span>
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Clay oven roasted Atlantic lobster, marinated in Kashmiri chili and hung curd, served with coconut moilee sauce.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹55</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vegan Section -->
+        <section id="vegan" class="scroll-mt-36 animate-fade-up" style="animation-delay: 500ms;">
+            <h2 class="text-xl tracking-tight font-medium text-white mb-6 flex items-center gap-4" style="font-family: 'Playfair Display', serif;">
+                Vegan
+                <span class="h-px flex-1 bg-gradient-to-r from-emerald-500/50 to-transparent"></span>
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Item: Tandoori Gobi Musallam -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1536510233921-8e5043fce771?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Tandoori Gobi Musallam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Tandoori Gobi Musallam</h3>
+                                <span class="flex items-center justify-center w-3.5 h-3.5 border border-emerald-500/40 rounded-sm shrink-0 mt-0.5" title="Vegan">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+                                </span>
+                            </div>
+                            <!-- Badge -->
+                            <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    <iconify-icon icon="solar:leaf-bold" width="1em" height="1em"></iconify-icon>
+                                    Plant-Based
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Whole roasted cauliflower basted in a rich almond and coconut gravy, topped with caramelized onions.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beverages Section -->
+        <section id="beverages" class="scroll-mt-36 animate-fade-up" style="animation-delay: 600ms;">
+            <h2 class="text-xl tracking-tight font-medium text-white mb-6 flex items-center gap-4" style="font-family: 'Playfair Display', serif;">
+                Beverages
+                <span class="h-px flex-1 bg-gradient-to-r from-blue-500/50 to-transparent"></span>
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Item: Cardamom Old Fashioned -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&amp;fit=crop&amp;q=80&amp;w=300&amp;h=300" alt="Cardamom Old Fashioned" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Cardamom Old Fashioned</h3>
+                                <iconify-icon icon="solar:glass-water-bold" class="text-blue-500/80 mt-0.5" width="1.2em" height="1.2em"></iconify-icon>
+                            </div>
+                            <div class="mb-2">
+                                <span class="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-medium text-[#D4AF37] bg-[#D4AF37]/10 px-1.5 py-0.5 rounded border border-[#D4AF37]/20">
+                                    Signature
+                                </span>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Single malt whiskey stirred with cardamom-infused jaggery syrup, finished with aromatic smoke.</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item: Kala Khatta Margarita -->
+                <div class="group flex gap-4 p-3 -mx-3 rounded-2xl hover:bg-zinc-900/30 transition-colors duration-300 active:scale-[0.98]">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden shrink-0 bg-zinc-900 relative border border-zinc-800/50">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdftx3bNE7xuv2LwpO3nBikAQS0dW0CZhAGg&s" alt="Kala Khatta Margarita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex flex-col justify-between py-0.5 flex-1">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-1">
+                                <h3 class="text-base tracking-tight font-medium text-zinc-100 leading-tight">Kala Khatta Cooler</h3>
+                                <iconify-icon icon="solar:cup-bold" class="text-blue-500/80 mt-0.5" width="1.2em" height="1.2em"></iconify-icon>
+                            </div>
+                            <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed font-light mt-1">Jamun fruit extract, black salt, fresh lime, and sparkling water with a chili-salt rim. (Non-Alcoholic)</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-2">
+                            <span class="text-sm font-medium text-white tracking-wide">₹14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Gradient for smooth scrolling fade out -->
+    <div class="fixed bottom-0 left-0 w-full h-16 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none z-10"></div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-[#D4AF37]');
+                link.classList.add('text-zinc-500');
+                const dot = link.querySelector('span');
+                if (dot) dot.remove();
+
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('text-[#D4AF37]');
+                    link.classList.remove('text-zinc-500');
+                    if(!link.querySelector('span')) {
+                        link.insertAdjacentHTML('beforeend', '<span class="absolute -bottom-2 w-1 h-1 rounded-full bg-[#D4AF37]"></span>');
+                    }
+                }
+            });
+        });
+
+        // Carousel Logic
+        const track = document.getElementById('carousel-track');
+        const dots = document.getElementById('carousel-dots')?.children;
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        
+        if (track && dots) {
+            let currentIndex = 0;
+            let autoAdvance;
+            const totalSlides = dots.length;
+
+            const updateCarousel = (index) => {
+                Array.from(dots).forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.remove('bg-zinc-700', 'w-1.5');
+                        dot.classList.add('bg-[#D4AF37]', 'w-4');
+                    } else {
+                        dot.classList.remove('bg-[#D4AF37]', 'w-4');
+                        dot.classList.add('bg-zinc-700', 'w-1.5');
+                    }
+                });
+            };
+
+            const goToSlide = (index) => {
+                currentIndex = index;
+                track.scrollTo({
+                    left: currentIndex * track.clientWidth,
+                    behavior: 'smooth'
+                });
+                updateCarousel(currentIndex);
+            };
+
+            const goNext = () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                goToSlide(currentIndex);
+            };
+
+            const goPrev = () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                goToSlide(currentIndex);
+            };
+
+            // Start auto-slide
+            const startAutoAdvance = () => {
+                autoAdvance = setInterval(goNext, 4000);
+            };
+
+            const resetAutoAdvance = () => {
+                clearInterval(autoAdvance);
+                startAutoAdvance();
+            };
+
+            // Dot click handlers
+            Array.from(dots).forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    // Find index of clicked dot
+                    const index = Array.from(dots).indexOf(dot);
+                    goToSlide(index);
+                    resetAutoAdvance();
+                });
+            });
+
+            // Arrow handlers
+            if(prevBtn) prevBtn.addEventListener('click', () => { goPrev(); resetAutoAdvance(); });
+            if(nextBtn) nextBtn.addEventListener('click', () => { goNext(); resetAutoAdvance(); });
+
+            // Sync with manual scroll/swipe
+            track.addEventListener('scroll', () => {
+                const scrollLeft = track.scrollLeft;
+                const slideWidth = track.clientWidth;
+                if(slideWidth > 0) {
+                    const index = Math.round(scrollLeft / slideWidth);
+                    if (index !== currentIndex && index < totalSlides && index >= 0) {
+                        currentIndex = index;
+                        updateCarousel(currentIndex);
+                    }
+                }
+            });
+
+            // Touch interactions to pause/resume auto-scroll
+            track.addEventListener('touchstart', () => clearInterval(autoAdvance), {passive: true});
+            track.addEventListener('touchend', startAutoAdvance, {passive: true});
+
+            startAutoAdvance();
+        }
+
+        // Language Toggle Logic
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const translatables = document.querySelectorAll('.translatable');
+        const searchInputEl = document.getElementById('searchInput');
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active styles
+                langBtns.forEach(b => {
+                    b.classList.remove('bg-[#D4AF37]/20', 'text-[#D4AF37]');
+                    b.classList.add('text-zinc-400');
+                });
+                btn.classList.add('bg-[#D4AF37]/20', 'text-[#D4AF37]');
+                btn.classList.remove('text-zinc-400');
+
+                const lang = btn.getAttribute('data-lang');
+                
+                // Update text content
+                translatables.forEach(el => {
+                    if(el.getAttribute(`data-${lang}`)) {
+                       el.textContent = el.getAttribute(`data-${lang}`);
+                    }
+                });
+
+                // Update Placeholder
+                if(searchInputEl) {
+                    if(lang === 'en') searchInputEl.placeholder = 'Search menu...';
+                    if(lang === 'hi') searchInputEl.placeholder = 'मेनू खोजें...';
+                    if(lang === 'mr') searchInputEl.placeholder = 'मेनू शोधा...';
+                }
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const menuItems = document.querySelectorAll('main .group');
+        
+        if(searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                menuItems.forEach(item => {
+                    const title = item.querySelector('h3')?.textContent.toLowerCase() || '';
+                    const desc = item.querySelector('p')?.textContent.toLowerCase() || '';
+                    
+                    if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Hide empty sections during search
+                sections.forEach(section => {
+                    if (section.id && ['veg', 'non-veg', 'vegan', 'beverages'].includes(section.id)) {
+                        const itemsInSection = section.querySelectorAll('.group');
+                        const hasVisibleItems = Array.from(itemsInSection).some(item => item.style.display !== 'none');
+                        
+                        if (itemsInSection.length > 0) {
+                            section.style.display = hasVisibleItems ? 'block' : 'none';
+                        }
+                    }
+                });
+            });
+        }
+
+        // Skeleton Loading Logic for Images
+        document.addEventListener("DOMContentLoaded", () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const parent = img.parentElement;
+                
+                // Add skeleton pulse and hide image initially
+                parent.classList.add('animate-pulse', 'bg-zinc-800');
+                img.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                
+                const showImage = () => {
+                    parent.classList.remove('animate-pulse', 'bg-zinc-800');
+                    img.classList.remove('opacity-0');
+                };
+
+                if (img.complete && img.naturalHeight !== 0) {
+                    showImage();
+                } else {
+                    img.addEventListener('load', showImage);
+                    img.addEventListener('error', showImage); // Fallback so it doesn't pulse forever
+                }
+            });
+
+            // 3D Tilt Hover Effect for Dish Cards
+            const cards = document.querySelectorAll('main .group');
+            cards.forEach(card => {
+                // Ensure smooth transition for reset and box-shadow
+                card.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease';
+
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    // Cap rotation between -8 and +8 degrees
+                    const rotateX = ((y - centerY) / centerY) * -8; 
+                    const rotateY = ((x - centerX) / centerX) * 8;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    card.style.boxShadow = '0 20px 40px -10px rgba(0,0,0,0.7), 0 0 20px rgba(212, 175, 55, 0.05)';
+                    card.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    card.style.boxShadow = 'none';
+                    card.style.zIndex = '1';
+                    
+                    // Re-enable CSS transition for the smooth snap back
+                    setTimeout(() => {
+                        // Keep transition active for other states
+                    }, 400); 
+                });
+                
+                // Active click state
+                card.addEventListener('mousedown', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(0.98, 0.98, 0.98)`;
+                });
+                card.addEventListener('mouseup', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+            });
+        });
+    </script>
+
+</body></html>
